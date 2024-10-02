@@ -4,5 +4,5 @@ set -o errexit
 
 poetry install
 
-make dev
+make start
 # python manage.py migrate
