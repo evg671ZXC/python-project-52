@@ -40,6 +40,9 @@ ALLOWED_HOSTS = [
     'webserver'
 ]
 
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -50,6 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_bootstrap5',
+    'task_manager.users',
+    'task_manager.statuses',
+    'task_manager.task',
     'task_manager'
 ]
 
@@ -132,6 +139,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Local files for translation (use i18n)
+
+LOCALE_PATHS = ( os.path.join(BASE_DIR, 'locale'), )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
