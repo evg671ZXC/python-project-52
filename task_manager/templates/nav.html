@@ -2,39 +2,42 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand ms-3" href="/">Менеджер задач</a>
     <button class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
-      <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'users' %}">Пользователи</a>
-        </li>       
-      </ul>
-      <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users' %}">Пользователи</a>
+            </li>       
+        </ul>
+        <ul class="navbar-nav">
         {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Статусы</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'create_user' %}">Метки</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'create_user' %}">Задачи</a>
-        </li>
-        <li class="nav-item">
-            <form method="POST", action="{% url 'logout' %}">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'statuses' %}">Статусы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_user' %}">Метки</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_user' %}">Задачи</a>
+            </li>
+            <li class="nav-item">
+                <p>{{ user.username }} | </p>
+            </li>
+            <li class="nav-item">
+                <form method="POST", action="{% url 'logout' %}">
                 {% csrf_token %}
-                <button class="btn btn-dangerbtn btn-danger">{% translate 'logout' %}</button>
-            </form>
-        </li>
+                    <button class="btn btn-danger">{% translate 'logout' %}</button>
+                </form>
+            </li>
         {% else %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Вход</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'create_user' %}">Регистрация</a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Вход</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_user' %}">Регистрация</a>
+            </li>
         {% endif %}
-      </ul>
+        </ul>
     </div>
 </nav>

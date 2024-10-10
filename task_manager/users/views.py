@@ -2,11 +2,13 @@ from django.urls import reverse_lazy
 # from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import FormView, UpdateView, DeleteView
 from django.views.generic.list import ListView
-# from django.utils.decorators import method_decorator
-# from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponseForbidden
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth import get_user_model
+from ..utils.mixins import UserRequiredMixin
 from .forms import RegisterForm
-from .models import User
+
+
+User = get_user_model()
 
 # Create your views here.
 class UsersIndexView(ListView):
@@ -14,50 +16,25 @@ class UsersIndexView(ListView):
     context_object_name = "users"
 
     
-class UserCreateView(FormView):
+class UserCreateView(SuccessMessageMixin, FormView):
     form_class = RegisterForm
     template_name = "users/create.html"
     success_url = reverse_lazy("login")
+    success_message = 'Пользователь был успешно обновлен'
 
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
 
 
-# class AuthDeleteOrUpdateView(UpdateView, DeleteView):
-#     model = User
-
-#     def dispatch(self, request, *args, **kwargs):
-        
-#         if not request.user.is_authenticated:
-#             return HttpResponseForbidden()
-        
-#         return super().dispatch(request, *args, **kwargs)
-    
-#     def get_success_url(self):
-#         return reverse_lazy("users")
-
-
-class UserUpdateView(UpdateView):
+class UserUpdateView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = RegisterForm
-    success_url = reverse_lazy("users")
-
-    def dispatch(self, request, *args, **kwargs):
-        
-        if not request.user.is_authenticated:
-            return HttpResponseForbidden()
-        
-        return super().dispatch(request, *args, **kwargs)
+    success_url = reverse_lazy("login")
+    success_message = 'Пользователь был успешно обновлен'
 
 
-class DeleteUserView(DeleteView):
+class DeleteUserView(UserRequiredMixin, SuccessMessageMixin, DeleteView):
     model = User
     success_url = reverse_lazy("users")
-
-    def dispatch(self, request, *args, **kwargs):
-        
-        if not request.user.is_authenticated:
-            return HttpResponseForbidden()
-        
-        return super().dispatch(request, *args, **kwargs)
+    success_message = 'Пользователь был успешно обновлен'
