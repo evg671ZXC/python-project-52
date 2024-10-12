@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import Status
-from ..utils.mixins import UserRequiredMixin
+from  django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class StatusIndexView(ListView):
@@ -11,14 +12,14 @@ class StatusIndexView(ListView):
     template_name = 'statuses/status_list.html'
 
 
-class StatusCreateView(UserRequiredMixin, CreateView):
+class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin,  CreateView):
     model = Status
     ...
 
-class StatusUpdateView(UserRequiredMixin, UpdateView):
+class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Status
     ...
 
-class StatusDeleteView(UserRequiredMixin, DeleteView):
+class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin,  DeleteView):
     model = Status
     ...

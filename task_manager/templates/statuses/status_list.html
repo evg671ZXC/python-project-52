@@ -21,7 +21,6 @@
             <tr>
                 <td>{{ status.id }}</td>
                 <td>{{ status.name }}</td>
-                <td>{{ status.created_at|date:"d.m.Y" }}</td>
                 <td>  
                     <a href="{% url 'update_status' status.id %}">Edit</a>
                     <a href="{% url 'delete_status' status.id %}">Delete</a>

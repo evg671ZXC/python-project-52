@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+    <h1 class="my-4">Метки</h1>
+    <a class="btn btn-primary" href="{% url 'create_label' %}">Добавить метку</a>
+
+    {% bootstrap_messages %}
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr class="table">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for label in labels %}
+            <tr>
+                <td>{{ label.id }}</td>
+                <td>{{ label.name }}</td>
+                <td>{{ label.created_at|date:"d.m.Y" }}</td>
+                <td>
+                    
+                    <a href="{% url 'update_label' label.id %}">Изменить</a>
+                    <a href="{% url 'delete_label' label.id %}">Удалить</a>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
