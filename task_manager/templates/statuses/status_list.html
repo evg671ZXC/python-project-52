@@ -5,7 +5,9 @@
 {% block content %}
     <h1 class="my-4">Статусы</h1>
     <a class="btn btn-primary" href="{% url 'create_status' %}">{% trans 'Add status' %}</a>
+    
     {% bootstrap_messages %}
+
     <table class="table table-striped p-md-5 m-md-3">
         <thead>
         <tr>
@@ -21,9 +23,11 @@
             <tr>
                 <td>{{ status.id }}</td>
                 <td>{{ status.name }}</td>
+                <td>{{ status.created_at|date:"d.m.Y" }}</td>
                 <td>  
-                    <a href="{% url 'update_status' status.id %}">Edit</a>
-                    <a href="{% url 'delete_status' status.id %}">Delete</a>
+                    <a href="{% url 'update_status' status.id %}">Изменить</a>
+                    </br>
+                    <a href="{% url 'delete_status' status.id %}">Удалить</a>
                 </td>
             </tr>
             {% endfor %}
