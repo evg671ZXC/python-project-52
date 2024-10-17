@@ -10,10 +10,10 @@ class UserRequiredMixin(AccessMixin):
             messages.error(request, 'You are not authorized! Please log in.')
             return redirect('users')
 
-        if request.user.id != int(kwargs.get('pk', 0)):
+        if self.get_object() != request.user:
             messages.error(
                 request,
-                messages.error(self.request, ("You have't permission!"))
+                messages.error(request, ("You have't permission!"))
             )
             return redirect('users')
                 

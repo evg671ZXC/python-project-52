@@ -5,7 +5,7 @@ from ..labels.models import Label
 
 # Create your models here.
 class Task(models.Model):
-    name = models.CharField(max_length=100, unique=True, verbose_name='name', default='')
+    name = models.CharField(max_length=100, unique=True, verbose_name='name')
     description = models.TextField(
         blank=True, 
         verbose_name='Description'
@@ -21,7 +21,6 @@ class Task(models.Model):
         on_delete=models.PROTECT,
         related_name='author',
         verbose_name='Author',
-        default='',
     )
     performer = models.ForeignKey(
         User,

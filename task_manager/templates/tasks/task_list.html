@@ -6,6 +6,8 @@
 <h1 class="my-4">Задачи</h1>
 <a class="btn btn-primary" href="{% url 'create_task' %}">Добавить задачу</a>
 
+{% bootstrap_messages %}
+
 <!-- <div class="card mb-3">
     <div class="card-body bg-light">
         <form class="form-inline center" method="get">
@@ -28,19 +30,19 @@
     </thead>
     <tbody>
         {% for task in tasks %}
-            <tr>
-                <td>{{ task.id }}</td>
-                <td>{{ task.name }}</td>
-                <td>{{ task.status }}</td>
-                <td>{{ task.author }}</td>
-                <td>{{ task.performer }}</td>
-                <td>{{ task.created_at|date:"d.m.Y" }}</td>
-                <td>                   
-                    <a href="{% url 'update_task' task.id %}">Изменить</a>
-                    </br>
-                    <a href="{% url 'delete_task' task.id %}">Удалить</a>
-                </td>
-            </tr>
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.author }}</td>
+            <td>{{ task.performer }}</td>
+            <td>{{ task.created_at|date:"d.m.Y" }}</td>
+            <td>                   
+                <a href="{% url 'update_task' task.id %}">Изменить</a>
+                </br>
+                <a href="{% url 'delete_task' task.id %}">Удалить</a>
+            </td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>

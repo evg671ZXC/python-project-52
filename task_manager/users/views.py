@@ -15,12 +15,15 @@ class UsersIndexView(ListView):
     model = User
     context_object_name = "users"
 
+
+
+
     
 class UserCreateView(SuccessMessageMixin, FormView):
     form_class = RegisterForm
     template_name = "users/create.html"
     success_url = reverse_lazy("login")
-    success_message = 'Пользователь был успешно обновлен'
+    success_message = 'Пользователь был успешно coздан'
 
     def form_valid(self, form):
         form.save()
@@ -37,4 +40,4 @@ class UserUpdateView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
 class DeleteUserView(UserRequiredMixin, SuccessMessageMixin, DeleteView):
     model = User
     success_url = reverse_lazy("users")
-    success_message = 'Пользователь был успешно обновлен'
+    success_message = 'Пользователь был успешно удален'
