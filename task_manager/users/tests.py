@@ -6,7 +6,10 @@ from .models import User
 class UserTestCase(TestCase):
     @classmethod
     def setUp(cls):
-        cls.url = reverse('create_user')
+        cls._get = reverse('users')
+        cls._create = reverse('create_user')
+        # cls._update = reverse('update_user')
+        # cls._delete = reverse('delete_user')
     
         cls.user1 = User.objects.create(
             first_name='Foo',
@@ -24,26 +27,27 @@ class UserTestCase(TestCase):
         )
 
     def test_get(self):
-        response = self.client.get(self.url)
-        print(response.headers['Content-Type'])
+        response = self.client.get(self._get)
         self.assertEqual(200, response.status_code)
 
     def test_create_user(self):
         self.assertEqual(2, User.objects.all().count())
-        # self.client.force_login(self.user)
+        print(self._create)
         response = self.client.post(
-            self.url, {
-                'first_name': 'Foo',
-                'last_name': 'Buzz3',
-                'username': 'FooBuzz3',
-                'password1': '123qwerty',
-                'password2': '123qwerty',
-            },
-            follow=True
+            self._create, {
+                'first_name': 'Test',
+                'last_name': 'Test',
+                'username': 'Test',
+                'password1': 'Test123pass',
+                'password2': 'Test123pass'
+            }
         )
-        self.assertEqual(response.status_code, 200)
+        print(response)
+        self.assertEqual(3, User.objects.all().count())
+
+        self.assertEqual(response.status_code, 302)
+        # self.assertTemplateUsed(response, "users/create.html")
         self.assertRedirects(response, reverse('login'))
-        print(response.redirect_chain)
 
 
 

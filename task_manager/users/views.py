@@ -13,17 +13,18 @@ User = get_user_model()
 # Create your views here.
 class UsersIndexView(ListView):
     model = User
-    context_object_name = "users"
 
-
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = self.model.objects.all().exclude(is_superuser=True)
+        return context
 
     
 class UserCreateView(SuccessMessageMixin, FormView):
     form_class = RegisterForm
     template_name = "users/create.html"
     success_url = reverse_lazy("login")
-    success_message = 'Пользователь был успешно coздан'
+    success_message = 'Пользователь был успешно обновлен'
 
     def form_valid(self, form):
         form.save()
@@ -40,4 +41,4 @@ class UserUpdateView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
 class DeleteUserView(UserRequiredMixin, SuccessMessageMixin, DeleteView):
     model = User
     success_url = reverse_lazy("users")
-    success_message = 'Пользователь был успешно удален'
+    success_message = 'Пользователь был успешно обновлен'
