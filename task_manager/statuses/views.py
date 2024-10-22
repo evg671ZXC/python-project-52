@@ -23,7 +23,7 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin,  CreateView):
     success_url = reverse_lazy('statuses')
     success_message = 'Status created successfully'
     fields = ['name']
-    ...
+
 
 class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Status
@@ -31,7 +31,7 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('statuses')
     success_message = 'Status successfully changed'
     fields = ['name']
-    ...
+
 
 class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin,  DeleteView):
     model = Status

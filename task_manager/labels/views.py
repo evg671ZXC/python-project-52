@@ -36,11 +36,4 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin,  DeleteView):
     success_message = 'Label successfully deleted'
     error_message = 'Cannot delete label because it is in use'
 
-    def post(self, request, *args, **kwargs):
-        try:
-            return super().post(request, *args, **kwargs)
-        except ProtectedError:
-            messages.error(request, self.error_message)
-            return redirect(self.success_url)
-
 

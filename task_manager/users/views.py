@@ -41,4 +41,4 @@ class UserUpdateView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
 class DeleteUserView(UserRequiredMixin, SuccessMessageMixin, DeleteView):
     model = User
     success_url = reverse_lazy("users")
-    success_message = 'Пользователь был успешно обновлен'
+    success_message = 'Пользователь был успешно удален'
