@@ -7,8 +7,6 @@ from ..labels.models import Label
 from ..utils.filters import TaskFilter
 
 # Create your tests here.
-
-
 class TaskCRUDTestCase(TestCase):
     def setUp(self):
         self.client = Client()
@@ -83,6 +81,7 @@ class TaskCRUDTestCase(TestCase):
         self.assertRedirects(response, reverse('tasks'))
         self.assertFalse(Task.objects.filter(pk=self.task.pk).exists())
 
+
 class TaskFilterTestCase(TestCase):
     def setUp(self):
         self.client = Client()
@@ -93,34 +92,44 @@ class TaskFilterTestCase(TestCase):
         self.client.login(username='filteruser1', password='filterpass')
 
         self.status = Status.objects.create(name='test status')
-        self.label1 = Label.objects.create(name='Label 1')
-        self.label2 = Label.objects.create(name='Label 2')
 
         self.task1 = Task.objects.create(
-            name='Task 1',
-            description="Description 1",
+            name='task 1',
+            description="description 1",
             status=self.status,
             author=self.user1,
             performer=self.user1
         )
-        self.task1.labels.add(self.label1)
+        self.task1.labels.add(Label.objects.create(name='label 1'))
     
         self.task2 = Task.objects.create(
-            name='Task 2',
-            description="Description 2",
+            name='task 2',
+            description="description 2",
             status=self.status,
             author=self.user2,
             performer=self.user2
         )
-        self.task2.labels.add(self.label2)
+        self.task2.labels.add(Label.objects.create(name='label 2'))
+
+    def test_filter_by_performer(self):
+        filter = TaskFilter(data={'performer': self.user1.id}, queryset=Task.objects.all())
+        filtered_tasks = list(filter.qs)
+        self.assertEqual(len(filtered_tasks), 1)
+        self.assertEqual(filtered_tasks[0].name, 'task 1')
 
     def test_filter_by_label(self):
         filter = TaskFilter(data={'label': self.task1.labels.first().id}, queryset=Task.objects.all())
         filtered_tasks = list(filter.qs)
         self.assertEqual(len(filtered_tasks), 1)
-        self.assertEqual(filtered_tasks[0].name, 'Task 1')
+        self.assertEqual(filtered_tasks[0].name, 'task 1')
 
     def test_filter_by_status(self):
         filter = TaskFilter(data={'status': self.status.id}, queryset=Task.objects.all())
         filtered_tasks = list(filter.qs)
         self.assertEqual(len(filtered_tasks), 2)
+
+    def test_filter_self_tasks(self):
+        response = self.client.get(reverse('tasks'), {'self_tasks': 'on'})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'task 1')
+        self.assertNotContains(response, 'task 2')
