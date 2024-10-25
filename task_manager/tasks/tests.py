@@ -11,7 +11,7 @@ class TaskCRUDTestCase(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = get_user_model().objects.create_user(username='testuser', password='password123test')
-        self.client.login(username='testuser', password='password123test')
+        self.client.force_login(self.user)
         self.status = Status.objects.create(name='New')
         self.label = Label.objects.create(name='Test Label')
         self.task = Task.objects.create(
