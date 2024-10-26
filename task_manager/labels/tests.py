@@ -3,13 +3,17 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from .models import Label
 
+
 # Create your tests here.
 class TestLabelsView(TestCase):
 
     def setUp(self):
         self.client = Client()
 
-        self.user = get_user_model().objects.create_user(username='testuser', password='test123pass')
+        self.user = get_user_model().objects.create_user(
+            username='testuser',
+            password='test123pass'
+        )
         self.client.force_login(self.user)
         self.label = Label.objects.create(name='test view')
 

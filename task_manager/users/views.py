@@ -10,6 +10,7 @@ from .forms import RegisterForm
 
 User = get_user_model()
 
+
 # Create your views here.
 class UsersIndexView(ListView):
     model = User
@@ -19,7 +20,7 @@ class UsersIndexView(ListView):
         context['users'] = self.model.objects.all().exclude(is_superuser=True)
         return context
 
-    
+
 class UserCreateView(SuccessMessageMixin, FormView):
     form_class = RegisterForm
     template_name = "users/create.html"

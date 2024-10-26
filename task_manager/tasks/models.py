@@ -3,11 +3,12 @@ from ..statuses.models import Status
 from ..users.models import User
 from ..labels.models import Label
 
+
 # Create your models here.
 class Task(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='name')
     description = models.TextField(
-        blank=True, 
+        blank=True,
         verbose_name='Description'
     )
     status = models.ForeignKey(

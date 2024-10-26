@@ -2,12 +2,13 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from .models import User
 
+
 # Create your tests here.
 class UserTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-    
+
         self.user1 = User.objects.create_user(
             username='testuser1',
             email='test1@example.com',
@@ -30,7 +31,7 @@ class UserTestCase(TestCase):
     def _login(self, username, password):
         response = self.client.post(self.login_url, {'username': username, 'password': password})
         self.assertRedirects(response, self.index, 302)
-    
+
     def test_logout(self):
         self._login(self.user1.username, 'testpassword123')
         response = self.client.post(self.logout_url)
@@ -46,16 +47,15 @@ class UserTestCase(TestCase):
         self.assertTemplateUsed(response, template_name="users/create.html")
 
         new_user_data = {
-                'username': 'testuser3',
-                'email': 'test2@example.com',
-                'password1': 'testpassword123',
-                'password2': 'testpassword123'
-            }
+            'username': 'testuser3',
+            'email': 'test2@example.com',
+            'password1': 'testpassword123',
+            'password2': 'testpassword123'
+        }
 
         response = self.client.post(self.create_user_url, new_user_data)
         self.assertEqual(User.objects.last().username, new_user_data['username'])
         self.assertRedirects(response, self.login_url, 302)
-
 
     def test_update_user(self):
         self._login(self.user1.username, 'testpassword123')
@@ -74,7 +74,6 @@ class UserTestCase(TestCase):
 
         self.user1.refresh_from_db()
         self.assertEqual(self.user1.username, 'updateduser')
-
 
     def test_delete_user(self):
         # Проверка неавторизованного доступа

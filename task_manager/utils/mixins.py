@@ -16,5 +16,5 @@ class UserRequiredMixin(AccessMixin):
                 messages.error(request, ("You have't permission!"))
             )
             return redirect('users')
-                
+
         return super().dispatch(request, *args, **kwargs)

@@ -6,11 +6,15 @@ from ..statuses.models import Status
 from ..labels.models import Label
 from ..utils.filters import TaskFilter
 
+
 # Create your tests here.
 class TaskCRUDTestCase(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = get_user_model().objects.create_user(username='testuser', password='password123test')
+        self.user = get_user_model().objects.create_user(
+            username='testuser',
+            password='password123test'
+        )
         self.client.force_login(self.user)
         self.status = Status.objects.create(name='New')
         self.label = Label.objects.create(name='Test Label')
@@ -37,7 +41,6 @@ class TaskCRUDTestCase(TestCase):
         response = self.client.get(reverse('create_task'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/task_form.html')
-
 
         response = self.client.post(
             reverse('create_task'),
@@ -86,8 +89,14 @@ class TaskFilterTestCase(TestCase):
     def setUp(self):
         self.client = Client()
 
-        self.user1 = get_user_model().objects.create_user(username='filteruser1', password='filterpass')
-        self.user2 = get_user_model().objects.create_user(username='filteruser2', password='filterpass')
+        self.user1 = get_user_model().objects.create_user(
+            username='filteruser1',
+            password='filterpass'
+        )
+        self.user2 = get_user_model().objects.create_user(
+            username='filteruser2',
+            password='filterpass'
+        )
 
         self.client.login(username='filteruser1', password='filterpass')
 
@@ -101,7 +110,7 @@ class TaskFilterTestCase(TestCase):
             performer=self.user1
         )
         self.task1.labels.add(Label.objects.create(name='label 1'))
-    
+
         self.task2 = Task.objects.create(
             name='task 2',
             description="description 2",
@@ -118,7 +127,9 @@ class TaskFilterTestCase(TestCase):
         self.assertEqual(filtered_tasks[0].name, 'task 1')
 
     def test_filter_by_label(self):
-        filter = TaskFilter(data={'label': self.task1.labels.first().id}, queryset=Task.objects.all())
+        filter = TaskFilter(data={
+            'label': self.task1.labels.first().id
+        }, queryset=Task.objects.all())
         filtered_tasks = list(filter.qs)
         self.assertEqual(len(filtered_tasks), 1)
         self.assertEqual(filtered_tasks[0].name, 'task 1')

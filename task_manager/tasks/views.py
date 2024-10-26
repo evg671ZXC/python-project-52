@@ -1,8 +1,6 @@
-from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django_filters.views import FilterView
-from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -27,7 +25,7 @@ class TaskListView(LoginRequiredMixin, FilterView):
     filterset_class = TaskFilter
 
 
-class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin,  CreateView):
+class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     success_url = reverse_lazy('tasks')
     template_name = "tasks/task_form.html"
@@ -45,7 +43,7 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Task successfully updated'
 
 
-class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin,  DeleteView):
+class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Task
     success_url = reverse_lazy('tasks')
     success_message = 'Task successfully deleted'
@@ -56,4 +54,3 @@ class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin,  DeleteView):
             messages.error(request, 'Only the author can delete the task')
             return redirect(self.success_url)
         return super().dispatch(request, *args, **kwargs)
-
