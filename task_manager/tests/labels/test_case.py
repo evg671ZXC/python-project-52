@@ -1,35 +1,35 @@
+from task_manager.labels.models import Label
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-from .models import Label
 
 
-# Create your tests here.
-class TestLabelsView(TestCase):
+class UserTestCase(TestCase):
+    fixtures = ['labels_db.json', 'users_db.json']
 
     def setUp(self):
         self.client = Client()
 
-        self.user = get_user_model().objects.create_user(
-            username='testuser',
-            password='test123pass'
-        )
+        self.user = get_user_model().objects.get(username='test_user1')
         self.client.force_login(self.user)
-        self.label = Label.objects.create(name='test view')
 
-        self.labels_url = reverse('labels')
-        self.create_label_url = reverse('create_label')
-        self.update_label_url = lambda pk: reverse('update_label', args=[pk])
-        self.delete_label_url = lambda pk: reverse('delete_label', args=[pk])
+        self.label = Label.objects.get(name='New label1')
+
+        self.urls = {
+            'list': reverse('labels'),
+            'create': reverse('create_label'),
+            'update': lambda pk: reverse('update_label', args=[pk]),
+            'delete': lambda pk: reverse('delete_label', args=[pk]),
+        }
 
     def test_label_index_view(self):
-        response = self.client.get(self.labels_url)
+        response = self.client.get(self.urls['list'])
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'test view')
-
+        self.assertContains(response, 'New label1')
+    
     def test_create_label_view(self):
         response = self.client.post(
-            self.create_label_url,
+            self.urls['create'],
             {'name': 'New Label'},
             follow=True
         )
@@ -39,7 +39,7 @@ class TestLabelsView(TestCase):
 
     def test_update_label_view(self):
         response = self.client.post(
-            self.update_label_url(self.label.pk),
+            self.urls['update'](self.label.pk),
             {'name': 'Updated Label'},
             follow=True
         )
@@ -49,6 +49,7 @@ class TestLabelsView(TestCase):
         self.assertEqual(self.label.name, 'Updated Label')
 
     def test_delete_label_view(self):
-        response = self.client.post(self.delete_label_url(self.label.pk), follow=True)
+        response = self.client.post(self.urls['delete'](self.label.pk), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Label.objects.filter(pk=self.label.pk).exists())
+
