@@ -2,7 +2,5 @@
 # exit on error
 set -o errexit
 
-poetry install
-
-make start
 python manage.py migrate
+make start
