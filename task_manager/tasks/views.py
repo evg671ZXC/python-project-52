@@ -21,14 +21,14 @@ class TaskIndexView(DetailView):
 class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
     context_object_name = 'tasks'
-    template_name = 'tasks/task_list.html'
+    template_name_suffix = '_list'
     filterset_class = TaskFilter
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     success_url = reverse_lazy('tasks')
-    template_name = "tasks/task_form.html"
+    template_name = 'tasks/task_create.html'
     success_message = 'Task created successfully'
 
     def form_valid(self, form):

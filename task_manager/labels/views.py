@@ -16,6 +16,7 @@ class LabelIndexView(ListView):
 
 class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Label
+    template_name_suffix = "_create"
     success_url = reverse_lazy('labels')
     success_message = 'Label created successfully'
     fields = ['name']
@@ -23,7 +24,6 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
-
     success_message = 'Label successfully changed'
     success_url = reverse_lazy('labels')
     fields = ['name']
