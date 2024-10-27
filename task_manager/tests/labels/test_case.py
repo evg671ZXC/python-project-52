@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 
-class UserTestCase(TestCase):
+class LabelTestCase(TestCase):
     fixtures = ['labels_db.json', 'users_db.json']
 
     def setUp(self):
@@ -26,7 +26,7 @@ class UserTestCase(TestCase):
         response = self.client.get(self.urls['list'])
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'New label1')
-    
+
     def test_create_label_view(self):
         response = self.client.post(
             self.urls['create'],
@@ -52,4 +52,3 @@ class UserTestCase(TestCase):
         response = self.client.post(self.urls['delete'](self.label.pk), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Label.objects.filter(pk=self.label.pk).exists())
-

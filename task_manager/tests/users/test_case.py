@@ -21,21 +21,26 @@ class UserTestCase(TestCase):
             'update': lambda pk: reverse('update_user', args=[pk]),
             'delete': lambda pk: reverse('delete_user', args=[pk]),
         }
-    
+
     def _login(self, username, password):
-        response = self.client.post(self.urls['login'], {'username': username, 'password': password})
+        response = self.client.post(
+            self.urls['login'], {
+                'username': username,
+                'password': password
+            }
+        )
         self.assertRedirects(response, self.urls['index'], 302)
-    
+
     def test_logout(self):
         self._login(self.user1.username, 'password123pass')
         response = self.client.post(self.urls['logout'])
         self.assertRedirects(response, self.urls['index'], 302)
-    
+
     def test_get_users(self):
         response = self.client.get(self.urls['list'])
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context["users"]), 2)
-    
+
     def test_create_user(self):
         response = self.client.get(self.urls['create'])
         self.assertTemplateUsed(response, template_name="users/create.html")
@@ -50,7 +55,7 @@ class UserTestCase(TestCase):
         response = self.client.post(self.urls['create'], new_user_data)
         self.assertEqual(User.objects.last().username, new_user_data['username'])
         self.assertRedirects(response, self.urls['login'], 302)
-    
+
     def test_update_user(self):
         self._login(self.user1.username, 'password123pass')
 

@@ -7,16 +7,16 @@ class TaskTestCase(TaskSettings):
         response = self.client.get(self.urls['list'])
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'New Task1')
-    
+
     def test_task_detail_view(self):
         response = self.client.get(self.urls['detail'](self.task.pk))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'New Task1')
-    
+
     def test_create_task_view(self):
         response = self.client.get(self.urls['create'])
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'tasks/task_form.html')
+        self.assertTemplateUsed(response, 'tasks/task_create.html')
 
         response = self.client.post(
             self.urls['create'],
@@ -31,7 +31,7 @@ class TaskTestCase(TaskSettings):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, self.urls['list'])
         self.assertTrue(Task.objects.filter(name='New Test Task').exists())
-    
+
     def test_update_task_view(self):
         response = self.client.get(self.urls['update'](self.task.pk))
         self.assertEqual(response.status_code, 200)
