@@ -5,4 +5,4 @@ set -o errexit
 poetry install
 
 make start
-# python manage.py migrate
+python manage.py migrate
