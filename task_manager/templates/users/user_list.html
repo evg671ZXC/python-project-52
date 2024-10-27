@@ -1,21 +1,19 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans 'Task_manager' %}{% endblock %}
 {% load django_bootstrap5 %}
 
 
 {% block content %}
-<h1 class="my-4">Пользователи</h1>
-
 {% bootstrap_messages %}
+<h1 class="my-4">{% trans "Users" %}</h1>
           
 <table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Имя пользователя</th>
-            <th>Полное имя</th>
-            <th>Дата создания</th>
+            <th>{% trans "User name" %}</th>
+            <th>{% trans "Full name" %}</th>
+            <th>{% trans "Created date" %}</th>
             <th></th>
         </tr>
     </thead>
@@ -27,9 +25,9 @@
             <td>{{user.get_full_name }}</td>
             <td>{{user.date_joined|date:"d.m.Y"}}</td>
             <td>
-                <a href="{% url 'delete_user' user.id %}">{% trans 'удалить' %}</a>
+                <a href="{% url 'delete_user' user.id %}">{% trans "Change" %}</a>
                 <br/>
-                <a href="{% url 'update_user' user.id %}">{% trans 'Изменить' %}</a>
+                <a href="{% url 'update_user' user.id %}">{% trans "Delete" %}</a>
             </td>
         </tr>
         {% endfor %}

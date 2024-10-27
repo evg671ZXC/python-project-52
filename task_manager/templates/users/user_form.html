@@ -3,11 +3,11 @@
 {% load i18n %}
 
 {% block content %}
-<h1 class="my-4">{% translate 'User change' %}</h1>
+<h1 class="my-4">{% trans 'Change user' %}</h1>
 
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="Изменить" %}
+    <input class="btn btn-primary" type="submit" value="{% trans 'Change' %}">
 </form>
 {% endblock %}
