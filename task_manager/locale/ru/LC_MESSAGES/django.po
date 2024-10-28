@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 22:19+0600\n"
+"POT-Creation-Date: 2024-10-28 22:54+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,16 +113,16 @@ msgstr "Задача успешно удалена"
 msgid "Only the author can delete the task"
 msgstr "Задачу может удалить только ее автор"
 
-#: task_manager/templates/index.html:3 task_manager/templates/index.html:9
+#: task_manager/templates/index.html:3 task_manager/templates/index.html:10
 #: task_manager/templates/nav.html:3
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/index.html:11
+#: task_manager/templates/index.html:12
 msgid "Help you manage your goals and objectives"
 msgstr "Помощь в управлении вашими целями и задачами"
 
-#: task_manager/templates/index.html:12
+#: task_manager/templates/index.html:13
 msgid "Read more"
 msgstr "Узнать больше"
 
@@ -295,14 +295,6 @@ msgstr "Полное имя"
 msgid "Created date"
 msgstr "Дата создания"
 
-#: task_manager/urls.py:31
-msgid "You are logged in"
-msgstr "Вы залогинены"
-
-#: task_manager/urls.py:35
-msgid "You are logged out"
-msgstr "Вы разлогинены"
-
 #: task_manager/users/views.py:28
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
@@ -326,3 +318,11 @@ msgstr "Вы не авторизованы! Пожалуйста, выполни
 #: task_manager/utils/mixins.py:17
 msgid "You have't permission!"
 msgstr "У вас нет прав для изменения другого пользователя"
+
+#: task_manager/views.py:14
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: task_manager/views.py:18
+msgid "You logged out"
+msgstr "Вы разлогинены"

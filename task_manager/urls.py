@@ -16,8 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import views as auth_views
 from task_manager import views
 
 urlpatterns = [
@@ -27,11 +25,6 @@ urlpatterns = [
     path('statuses/', include('task_manager.statuses.urls')),
     path('labels/', include('task_manager.labels.urls')),
     path('tasks/', include('task_manager.tasks.urls')),
-    path('login/', auth_views.LoginView.as_view(
-        success_message=_('You are logged in'),
-        template_name="users/login.html"), name='login'
-    ),
-    path('logout/', auth_views.LogoutView.as_view(
-        success_message=_('You are logged out')
-    ), name='logout'),
+    path('login/', views.UserLoginView.as_view(), name='login'),
+    path('logout/', views.UserLogoutView.as_view(), name='logout'),
 ]
