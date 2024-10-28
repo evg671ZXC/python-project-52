@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 22:54+0600\n"
+"POT-Creation-Date: 2024-10-28 23:03+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,7 +206,7 @@ msgstr "Задачи"
 
 #: task_manager/templates/nav.html:30
 msgid "logout"
-msgstr "Выйти"
+msgstr "Выход"
 
 #: task_manager/templates/nav.html:35 task_manager/templates/users/login.html:7
 msgid "Sign in"
@@ -319,10 +319,10 @@ msgstr "Вы не авторизованы! Пожалуйста, выполни
 msgid "You have't permission!"
 msgstr "У вас нет прав для изменения другого пользователя"
 
-#: task_manager/views.py:14
+#: task_manager/views.py:15
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:18
+#: task_manager/views.py:19
 msgid "You logged out"
 msgstr "Вы разлогинены"
