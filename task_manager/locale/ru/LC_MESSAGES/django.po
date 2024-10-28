@@ -164,7 +164,7 @@ msgstr "Изменить"
 
 #: task_manager/templates/labels/label_list.html:7
 msgid "Add label"
-msgstr "Добавить метку"
+msgstr "Создать метку"
 
 #: task_manager/templates/labels/label_list.html:15
 #: task_manager/templates/statuses/status_list.html:16
