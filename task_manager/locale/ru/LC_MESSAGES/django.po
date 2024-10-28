@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 23:03+0600\n"
+"POT-Creation-Date: 2024-10-28 23:35+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,6 +143,7 @@ msgstr "Вы уверены, что хотите удалить "
 msgid "Yes, Delete"
 msgstr "Да, удалить"
 
+#: task_manager/templates/labels/label_list.html:7
 #: task_manager/templates/labels/label_create.html:6
 msgid "Create Label"
 msgstr "Создать метку"
@@ -161,10 +162,6 @@ msgstr "Изменить метку"
 #: task_manager/templates/statuses/status_form.html:11
 msgid "Сhange"
 msgstr "Изменить"
-
-#: task_manager/templates/labels/label_list.html:7
-msgid "Add label"
-msgstr "Создать метку"
 
 #: task_manager/templates/labels/label_list.html:15
 #: task_manager/templates/statuses/status_list.html:16
@@ -221,6 +218,7 @@ msgstr "Регистрация"
 msgid "Deleting a status"
 msgstr "Удаление статуса"
 
+#: task_manager/templates/statuses/status_list.html:7
 #: task_manager/templates/statuses/status_create.html:6
 msgid "Create status"
 msgstr "Создать статус"
@@ -228,10 +226,6 @@ msgstr "Создать статус"
 #: task_manager/templates/statuses/status_form.html:6
 msgid "Update Status"
 msgstr "Изменить статус"
-
-#: task_manager/templates/statuses/status_list.html:7
-msgid "Add status"
-msgstr "Cоздать статус"
 
 #: task_manager/templates/tasks/task_confirm_delete.html:6
 msgid "Deleting a task"
