@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 21:11+0600\n"
+"POT-Creation-Date: 2024-10-28 22:19+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,13 +47,13 @@ msgstr "Метка успешно удалена"
 msgid "Cannot delete label because it is in use"
 msgstr "Невозможно удалить метку, так как она используется"
 
-#: task_manager/statuses/models.py:15 task_manager/tasks/models.py:19
+#: task_manager/statuses/models.py:14 task_manager/tasks/models.py:19
 #: task_manager/templates/tasks/task_list.html:28
 #: task_manager/templates/tasks/task_show.html:26
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/statuses/models.py:16 task_manager/templates/nav.html:16
+#: task_manager/statuses/models.py:15 task_manager/templates/nav.html:16
 #: task_manager/templates/statuses/status_list.html:6
 msgid "Statuses"
 msgstr "Статусы"
@@ -294,6 +294,14 @@ msgstr "Полное имя"
 #: task_manager/templates/users/user_list.html:16
 msgid "Created date"
 msgstr "Дата создания"
+
+#: task_manager/urls.py:31
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: task_manager/urls.py:35
+msgid "You are logged out"
+msgstr "Вы разлогинены"
 
 #: task_manager/users/views.py:28
 msgid "User successfully registered"
