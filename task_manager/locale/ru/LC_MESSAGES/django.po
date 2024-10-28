@@ -231,7 +231,7 @@ msgstr "Изменить статус"
 
 #: task_manager/templates/statuses/status_list.html:7
 msgid "Add status"
-msgstr "Добавить статус"
+msgstr "Cоздать статус"
 
 #: task_manager/templates/tasks/task_confirm_delete.html:6
 msgid "Deleting a task"
