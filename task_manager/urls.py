@@ -28,10 +28,10 @@ urlpatterns = [
     path('labels/', include('task_manager.labels.urls')),
     path('tasks/', include('task_manager.tasks.urls')),
     path('login/', auth_views.LoginView.as_view(
-        success_message = _('You are logged in'),
+        success_message=_('You are logged in'),
         template_name="users/login.html"), name='login'
     ),
     path('logout/', auth_views.LogoutView.as_view(
-        success_message = _('You are logged out')
+        success_message=_('You are logged out')
     ), name='logout'),
 ]
