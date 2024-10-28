@@ -1,5 +1,6 @@
 from task_manager.labels.models import Label
 from django.test import TestCase, Client
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
@@ -34,7 +35,7 @@ class LabelTestCase(TestCase):
             follow=True
         )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Label created successfully')
+        self.assertContains(response, _('Label successfully created'))
         self.assertTrue(Label.objects.filter(name='New Label').exists())
 
     def test_update_label_view(self):
@@ -44,7 +45,7 @@ class LabelTestCase(TestCase):
             follow=True
         )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Label successfully changed')
+        self.assertContains(response, _('Label successfully changed'))
         self.label.refresh_from_db()
         self.assertEqual(self.label.name, 'Updated Label')
 

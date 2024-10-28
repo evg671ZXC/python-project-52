@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="my-4">Просмотр задачи</h1>
+<h1 class="my-4">{% trans 'Viewing a task' %}</h1>
 
 <div class="card">
     <div class="card-header bg-secondary text-white">
@@ -43,9 +43,9 @@
         </div>
         <div class="row p-1">
           <div class="col">
-            <a href="{% url 'update_task' task.id %}">Update</a>
+            <a href="{% url 'update_task' task.id %}">{% trans 'Update' %}</a>
             <br>
-            <a href="{% url 'delete_task' task.id %}">Delete</a>
+            <a href="{% url 'delete_task' task.id %}">{% trans 'Delete' %}</a>
           </div>
         </div>
       </div>

@@ -3,11 +3,11 @@
 {% load i18n %}
 
 {% block content %}
-<h1 class="my-4">Удаление статуса</h1>
+<h1 class="my-4">{% trans 'Deleting a status' %}</h1>
 
 <form method="post">
     {% csrf_token %}
-    <p>Are you sure you want to delete '{{ object }}'?</p>
-    <input class="btn btn-danger" type="submit" value="{% translate 'Yes, Delete' %}">
+    <p>{% trans 'Are you sure that you want to delete ' %} '{{ object }}'?</p>
+    <input class="btn btn-danger" type="submit" value="{% trans 'Yes, Delete' %}">
 </form>
 {% endblock %}

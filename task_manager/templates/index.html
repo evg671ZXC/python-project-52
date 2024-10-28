@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans 'Task_manager' %}{% endblock %}
+{% block title %}{% trans 'Task manager' %}{% endblock %}
 {% load django_bootstrap5 %}
 
 {% block content %}
 <div class="position-relative overflow-hidden p-md-5 m-md-3 text-center bg-light">
     <div class="mx-auto my-5">
-        <h1 class="display-4 fw-normal text-nowrap">Task manager</h1>
+        <h1 class="display-4 fw-normal text-nowrap">{% trans 'Task manager' %}</h1>
         <hr>
         <p class="lead fw-normal text-wrap">{% trans "Help you manage your goals and objectives" %}</p>
-        <a class="btn btn-outline-secondary" href="https://ru.hexlet.io/">Read more</a>
+        <a class="btn btn-outline-secondary" href="https://ru.hexlet.io/">{% trans 'Read more' %}</a>
     </div>
 </div>
 {% endblock %}

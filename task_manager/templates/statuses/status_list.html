@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block content %}
-    <h1 class="my-4">Статусы</h1>
+    <h1 class="my-4">{% trans 'Statuses' %}</h1>
     <a class="btn btn-primary" href="{% url 'create_status' %}">{% trans 'Add status' %}</a>
     
     {% bootstrap_messages %}
@@ -25,9 +25,9 @@
                 <td>{{ status.name }}</td>
                 <td>{{ status.created_at|date:"d.m.Y" }}</td>
                 <td>  
-                    <a href="{% url 'update_status' status.id %}">Изменить</a>
+                    <a href="{% url 'update_status' status.id %}">{% trans 'Update' %}</a>
                     </br>
-                    <a href="{% url 'delete_status' status.id %}">Удалить</a>
+                    <a href="{% url 'delete_status' status.id %}">{% trans 'Delete' %}</a>
                 </td>
             </tr>
             {% endfor %}

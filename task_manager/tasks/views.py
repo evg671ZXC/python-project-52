@@ -3,6 +3,7 @@ from django.views.generic.detail import DetailView
 from django_filters.views import FilterView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -29,7 +30,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     success_url = reverse_lazy('tasks')
     template_name = 'tasks/task_create.html'
-    success_message = 'Task created successfully'
+    success_message = _('Task successfully created')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -40,17 +41,18 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy('tasks')
-    success_message = 'Task successfully updated'
+    success_message = _('Task successfully updated')
 
 
 class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Task
     success_url = reverse_lazy('tasks')
-    success_message = 'Task successfully deleted'
+    success_message = _('Task successfully deleted')
+    error_message = _('Only the author can delete the task')
 
     def dispatch(self, request, *args, **kwargs):
         task = self.get_object()
         if task.author != request.user:
-            messages.error(request, 'Only the author can delete the task')
+            messages.error(request, self.error_message)
             return redirect(self.success_url)
         return super().dispatch(request, *args, **kwargs)

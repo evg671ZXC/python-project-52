@@ -3,8 +3,8 @@
 {% load i18n %}
 
 {% block content %}
-<h1 class="my-4">Задачи</h1>
-<a class="btn btn-primary mb-3" href="{% url 'create_task' %}">Добавить задачу</a>
+<h1 class="my-4">{% trans 'Tasks' %}</h1>
+<a class="btn btn-primary mb-3" href="{% url 'create_task' %}">{% trans 'Create task' %}</a>
 
 {% bootstrap_messages %}
 
@@ -14,7 +14,7 @@
         <form method="get" class="form-inline center">
             {% bootstrap_form filter.form %}
             
-            <button type="submit" class="btn btn-primary">Apply filters</button>
+            <button type="submit" class="btn btn-primary">{% trans 'Apply filters' %}</button>
 
         </form>
     </div>
@@ -42,9 +42,9 @@
             <td>{{ task.performer }}</td>
             <td>{{ task.created_at|date:"d.m.Y" }}</td>
             <td>                   
-                <a href="{% url 'update_task' task.id %}">Изменить</a>
+                <a href="{% url 'update_task' task.id %}">{% trans 'Update' %}</a>
                 </br>
-                <a href="{% url 'delete_task' task.id %}">Удалить</a>
+                <a href="{% url 'delete_task' task.id %}">{% trans 'Delete' %}</a>
             </td>
         </tr>
         {% endfor %}

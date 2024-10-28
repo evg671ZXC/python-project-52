@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -18,13 +19,13 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Label
     template_name_suffix = "_create"
     success_url = reverse_lazy('labels')
-    success_message = 'Label created successfully'
+    success_message = _('Label successfully created')
     fields = ['name']
 
 
 class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
-    success_message = 'Label successfully changed'
+    success_message = _('Label successfully changed')
     success_url = reverse_lazy('labels')
     fields = ['name']
 
@@ -32,8 +33,8 @@ class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Label
     success_url = reverse_lazy('labels')
-    success_message = 'Label successfully deleted'
-    error_message = 'Cannot delete label because it is in use'
+    success_message = _('Label successfully deleted')
+    error_message = _('Cannot delete label because it is in use')
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

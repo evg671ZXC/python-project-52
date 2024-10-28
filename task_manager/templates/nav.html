@@ -1,25 +1,25 @@
 {% load i18n %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ms-3" href="/">Менеджер задач</a>
+    <a class="navbar-brand ms-3" href="/">{% trans "Task manager" %}</a>
     <button class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'users' %}">Пользователи</a>
+                <a class="nav-link" href="{% url 'users' %}">{% trans "Users" %}</a>
             </li>       
         </ul>
         <ul class="navbar-nav">
         {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'statuses' %}">Статусы</a>
+                <a class="nav-link" href="{% url 'statuses' %}">{% trans "Statuses" %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'labels' %}">Метки</a>
+                <a class="nav-link" href="{% url 'labels' %}">{% trans "Labels" %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'tasks' %}">Задачи</a>
+                <a class="nav-link" href="{% url 'tasks' %}">{% trans "Tasks" %}</a>
             </li>
             <li class="nav-item">
                 <p>{{ user.username }} | </p>
@@ -27,15 +27,15 @@
             <li class="nav-item">
                 <form method="POST", action="{% url 'logout' %}">
                 {% csrf_token %}
-                    <button class="btn btn-danger">{% translate 'logout' %}</button>
+                    <button class="btn btn-danger">{% trans 'logout' %}</button>
                 </form>
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                <a class="nav-link" href="{% url 'login' %}">{% trans "Sign in" %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'create_user' %}">Регистрация</a>
+                <a class="nav-link" href="{% url 'create_user' %}">{% trans "Registration" %}</a>
             </li>
         {% endif %}
         </ul>
