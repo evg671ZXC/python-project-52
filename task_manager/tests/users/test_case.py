@@ -69,7 +69,7 @@ class UserTestCase(TestCase):
         }
 
         response = self.client.post(self.urls['update'](self.user1.pk), update_data)
-        self.assertRedirects(response, self.urls['login'], 302)
+        self.assertRedirects(response, self.urls['list'], 302)
 
         self.user1.refresh_from_db()
         self.assertEqual(self.user1.username, 'updateduser')

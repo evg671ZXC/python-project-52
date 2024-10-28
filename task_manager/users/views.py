@@ -35,7 +35,7 @@ class UserCreateView(SuccessMessageMixin, FormView):
 class UserUpdateView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = RegisterForm
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("users")
     success_message = _("User successfully changed")
 
 
