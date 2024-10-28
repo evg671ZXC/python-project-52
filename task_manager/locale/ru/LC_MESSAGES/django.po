@@ -146,8 +146,6 @@ msgstr "Да, удалить"
 
 #: task_manager/templates/labels/label_create.html:6
 #: task_manager/templates/labels/label_list.html:7
-#, fuzzy
-#| msgid "Create Label"
 msgid "Create label"
 msgstr "Создать метку"
 
