@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 23:35+0600\n"
+"POT-Creation-Date: 2024-10-28 23:42+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/labels/models.py:7 task_manager/statuses/models.py:7
+#: task_manager/tasks/models.py:10
+#: task_manager/templates/labels/label_list.html:14
+#: task_manager/templates/statuses/status_list.html:15
+#: task_manager/templates/tasks/task_list.html:27
+msgid "Name"
+msgstr "Имя"
 
 #: task_manager/labels/models.py:14 task_manager/utils/filters.py:12
 msgid "Label"
@@ -73,13 +81,6 @@ msgstr "Статус успешно удален"
 #: task_manager/statuses/views.py:38
 msgid "Cannot delete status because it is in use"
 msgstr "Невозможно удалить статус, так как он используется"
-
-#: task_manager/tasks/models.py:10
-#: task_manager/templates/labels/label_list.html:14
-#: task_manager/templates/statuses/status_list.html:15
-#: task_manager/templates/tasks/task_list.html:27
-msgid "Name"
-msgstr "Имя"
 
 #: task_manager/tasks/models.py:13
 msgid "Description"
@@ -143,9 +144,11 @@ msgstr "Вы уверены, что хотите удалить "
 msgid "Yes, Delete"
 msgstr "Да, удалить"
 
-#: task_manager/templates/labels/label_list.html:7
 #: task_manager/templates/labels/label_create.html:6
-msgid "Create Label"
+#: task_manager/templates/labels/label_list.html:7
+#, fuzzy
+#| msgid "Create Label"
+msgid "Create label"
 msgstr "Создать метку"
 
 #: task_manager/templates/labels/label_create.html:11
@@ -218,8 +221,8 @@ msgstr "Регистрация"
 msgid "Deleting a status"
 msgstr "Удаление статуса"
 
-#: task_manager/templates/statuses/status_list.html:7
 #: task_manager/templates/statuses/status_create.html:6
+#: task_manager/templates/statuses/status_list.html:7
 msgid "Create status"
 msgstr "Создать статус"
 
