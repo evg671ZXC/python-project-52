@@ -260,7 +260,7 @@ msgstr "Дата создания"
 
 #: task_manager/templates/users/create.html:11
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/users/login.html:11
 msgid "Login"
