@@ -24,7 +24,7 @@ class TaskTestCase(TaskSettings):
                 'name': 'New Test Task',
                 'description': 'Another test task',
                 'status': self.status.id,
-                'performer': self.user.id,
+                'executor': self.user.id,
                 'labels': [self.label.id]
             }
         )
@@ -43,7 +43,7 @@ class TaskTestCase(TaskSettings):
                 'name': 'Updated Test Task',
                 'description': 'This task was updated',
                 'status': self.status.id,
-                'performer': self.user.id,
+                'executor': self.user.id,
                 'labels': [self.label.id]
             }
         )

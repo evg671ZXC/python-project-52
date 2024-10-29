@@ -14,7 +14,7 @@ class StatusViewTests(TestCase):
         self.user = get_user_model().objects.get(username='test_user1')
         self.client.force_login(self.user)
 
-        self.status = Status.objects.get(name='New Status1')
+        self.status = Status.objects.get(name='New status1')
 
         self.urls = {
             'list': reverse('statuses'),
@@ -26,7 +26,7 @@ class StatusViewTests(TestCase):
     def test_status_list(self):
         response = self.client.get(self.urls['list'])
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'New Status1')
+        self.assertContains(response, 'New status1')
 
     def test_create_status(self):
         response = self.client.post(
@@ -34,7 +34,7 @@ class StatusViewTests(TestCase):
             {'name': 'test status'}
         )
         self.assertRedirects(response, self.urls['list'], 302)
-        self.assertEqual(Status.objects.count(), 4)
+        self.assertEqual(Status.objects.count(), 3)
 
     def test_update_status(self):
         response = self.client.get(self.urls['update'](self.status.pk))
@@ -52,4 +52,4 @@ class StatusViewTests(TestCase):
     def test_delete_status(self):
         response = self.client.post(self.urls['delete'](self.status.pk))
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Status.objects.count(), 2)
+        self.assertEqual(Status.objects.count(), 1)

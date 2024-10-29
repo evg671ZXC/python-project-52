@@ -15,7 +15,7 @@ class TaskSettings(TestCase):
         self.user = get_user_model().objects.get(username='test_user1')
         self.client.force_login(self.user)
 
-        self.status = Status.objects.get(name='New Status1')
+        self.status = Status.objects.get(name='New status1')
         self.label = Label.objects.get(name='New label1')
         self.task = Task.objects.get(name='New Task1')
 

@@ -24,11 +24,11 @@ class Task(models.Model):
         related_name='author',
         verbose_name=_('Author'),
     )
-    performer = models.ForeignKey(
+    executor = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
-        related_name='performer',
-        verbose_name=_('Performer'),
+        related_name='executor',
+        verbose_name=_('Executor'),
     )
     labels = models.ManyToManyField(
         Label,
