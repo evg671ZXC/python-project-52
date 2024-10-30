@@ -4,7 +4,7 @@ from django.views.generic.edit import FormView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import get_user_model
-from ..utils.mixins import UserRequiredMixin
+from ..utils.mixins import UserRequiredMixin, ProtectedErrorMixin
 from .forms import RegisterForm
 
 
@@ -39,7 +39,11 @@ class UserUpdateView(UserRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _("User successfully changed")
 
 
-class DeleteUserView(UserRequiredMixin, SuccessMessageMixin, DeleteView):
+class DeleteUserView(UserRequiredMixin,
+                     ProtectedErrorMixin,
+                     SuccessMessageMixin,
+                     DeleteView):
     model = User
     success_url = reverse_lazy("users")
     success_message = _("User successfully deleted")
+    error_message = _('Cannot delete user because it is in use')

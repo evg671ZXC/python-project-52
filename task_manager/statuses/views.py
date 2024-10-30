@@ -4,9 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
-from django.contrib import messages
-from django.shortcuts import redirect
-from django.db.models.deletion import ProtectedError
+from ..utils.mixins import ProtectedErrorMixin
 from .models import Status
 
 
@@ -31,15 +29,11 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     fields = ['name']
 
 
-class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(LoginRequiredMixin,
+                       ProtectedErrorMixin,
+                       SuccessMessageMixin,
+                       DeleteView):
     model = Status
     success_url = reverse_lazy('statuses')
     success_message = _('Status successfully deleted')
     error_message = _('Cannot delete status because it is in use')
-
-    def post(self, request, *args, **kwargs):
-        try:
-            return super().post(request, *args, **kwargs)
-        except ProtectedError:
-            messages.error(request, self.error_message)
-            return redirect(self.success_url)

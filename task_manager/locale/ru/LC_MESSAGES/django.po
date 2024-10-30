@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-29 18:50+0600\n"
+"POT-Creation-Date: 2024-10-30 21:42+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,19 +39,19 @@ msgstr "Метка"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/labels/views.py:22 task_manager/tests/labels/test_case.py:38
+#: task_manager/labels/views.py:21 task_manager/tests/labels/test_case.py:38
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
 
-#: task_manager/labels/views.py:28 task_manager/tests/labels/test_case.py:48
+#: task_manager/labels/views.py:27 task_manager/tests/labels/test_case.py:48
 msgid "Label successfully changed"
 msgstr "Метка успешно изменена"
 
-#: task_manager/labels/views.py:36
+#: task_manager/labels/views.py:38
 msgid "Label successfully deleted"
 msgstr "Метка успешно удалена"
 
-#: task_manager/labels/views.py:37
+#: task_manager/labels/views.py:39
 msgid "Cannot delete label because it is in use"
 msgstr "Невозможно удалить метку, так как она используется"
 
@@ -66,19 +66,19 @@ msgstr "Статус"
 msgid "Statuses"
 msgstr "Статусы"
 
-#: task_manager/statuses/views.py:23
+#: task_manager/statuses/views.py:21
 msgid "Status created successfully"
 msgstr "Статус успешно создан"
 
-#: task_manager/statuses/views.py:30
+#: task_manager/statuses/views.py:28
 msgid "Status successfully changed"
 msgstr "Статус успешно изменен"
 
-#: task_manager/statuses/views.py:37
+#: task_manager/statuses/views.py:38
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
-#: task_manager/statuses/views.py:38
+#: task_manager/statuses/views.py:39
 msgid "Cannot delete status because it is in use"
 msgstr "Невозможно удалить статус, так как он используется"
 
@@ -298,19 +298,23 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:45
+#: task_manager/users/views.py:48
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
+
+#: task_manager/users/views.py:49
+msgid "Cannot delete user because it is in use"
+msgstr "Невозможно удалить пользователя, так как он используется"
 
 #: task_manager/utils/filters.py:19
 msgid "Only own tasks"
 msgstr "Только свои задачи"
 
-#: task_manager/utils/mixins.py:11
+#: task_manager/utils/mixins.py:12
 msgid "You are not authorized! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход"
 
-#: task_manager/utils/mixins.py:17
+#: task_manager/utils/mixins.py:18
 msgid "You have't permission!"
 msgstr "У вас нет прав для изменения другого пользователя"
 
